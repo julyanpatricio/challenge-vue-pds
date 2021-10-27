@@ -48,6 +48,21 @@ export default {
 
   methods: {
     updateData() {
+      // const newCards = await Promise.all([
+      //   axios.get(
+      //     "http://lbl-mercadopago-webapi-prod-043d988d8fd60062.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5001/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-bistro-nc-wa-preprod-884f88ddc91b1d08.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      // ]);
+
       const newCards = [
         {
           version: "1.23.17",
@@ -73,29 +88,13 @@ export default {
           responseMessage: "27/10/2021 04:36:57",
         },
       ];
+
       if (!this.cards.length) {
         return (this.cards = newCards);
       }
-      const newCardsObj = {};
-      newCards.forEach((newCard) => {
-        newCardsObj[newCard.version] = newCard;
-      });
-      this.cards = this.cards.map((card) => newCardsObj[card.version]);
-
-      // this.cards = await Promise.all([
-      //   axios.get(
-      //     "http://lbl-mercadopago-webapi-prod-043d988d8fd60062.elb.us-east-1.amazonaws.com:5000/api/check"
-      //   ),
-      //   axios.get(
-      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5001/api/check"
-      //   ),
-      //   axios.get(
-      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5000/api/check"
-      //   ),
-      //   axios.get(
-      //     "http://lbl-bistro-nc-wa-preprod-884f88ddc91b1d08.elb.us-east-1.amazonaws.com:5000/api/check"
-      //   ),
-      // ]);
+      
+      this.cards = this.cards.map((element) => newCards.find(card => card.version === element.version));
+      
     },
   },
 
@@ -110,7 +109,7 @@ export default {
     cards: function () {
       setTimeout(() => {
         this.data = this.updateData();
-      }, 10000);
+      }, 2000);
     },
   },
 };
