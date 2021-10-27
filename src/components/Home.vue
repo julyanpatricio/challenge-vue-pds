@@ -1,21 +1,26 @@
 <template>
-  
-    <draggable v-model="cards" draggable=".card" class="cards">
-      <div v-for="(element, i) in cards" :key="i" class="card" :class="element['responseCode'] ? 'danger' : 'success'">
-        <md-card md-with-hover>
-          <md-ripple>
-            <md-card-header>
-              <div class="md-title">{{element['system'] || element['sistema'] || 'Mercadopago'}}</div>
-            </md-card-header>
+  <draggable v-model="cards" draggable=".card" class="cards">
+    <div
+      v-for="(element, i) in cards"
+      :key="i"
+      class="card"
+      :class="element['responseCode'] ? 'danger' : 'success'"
+    >
+      <md-card md-with-hover>
+        <md-ripple>
+          <md-card-header>
+            <div class="md-title">
+              {{ element["system"] || element["sistema"] || "Mercadopago" }}
+            </div>
+          </md-card-header>
 
-            <md-card-content>
-              {{ element['responseMessage'] }}
-            </md-card-content>
-          </md-ripple>
-        </md-card>
-      </div>
-    </draggable>
-  
+          <md-card-content>
+            {{ element["responseMessage"] }}
+          </md-card-content>
+        </md-ripple>
+      </md-card>
+    </div>
+  </draggable>
 </template>
 
 <script>
@@ -42,8 +47,8 @@ export default {
   },
 
   methods: {
-    updateData () {
-      this.cards = [
+    updateData() {
+      const newCards = [
         {
           version: "1.23.17",
           responseCode: Math.round(Math.random()),
@@ -67,51 +72,60 @@ export default {
           responseCode: Math.round(Math.random()),
           responseMessage: "27/10/2021 04:36:57",
         },
-      ]
-    // this.cards = await Promise.all([
-    //   axios.get(
-    //     "http://lbl-mercadopago-webapi-prod-043d988d8fd60062.elb.us-east-1.amazonaws.com:5000/api/check"
-    //   ),
-    //   axios.get(
-    //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5001/api/check"
-    //   ),
-    //   axios.get(
-    //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5000/api/check"
-    //   ),
-    //   axios.get(
-    //     "http://lbl-bistro-nc-wa-preprod-884f88ddc91b1d08.elb.us-east-1.amazonaws.com:5000/api/check"
-    //   ),
-    // ]);
-    }
+      ];
+      if (!this.cards.length) {
+        return (this.cards = newCards);
+      }
+      const newCardsObj = {};
+      newCards.forEach((newCard) => {
+        newCardsObj[newCard.version] = newCard;
+      });
+      this.cards = this.cards.map((card) => newCardsObj[card.version]);
+
+      // this.cards = await Promise.all([
+      //   axios.get(
+      //     "http://lbl-mercadopago-webapi-prod-043d988d8fd60062.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5001/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-tst-bistro-prod-39cf18e24a143687.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      //   axios.get(
+      //     "http://lbl-bistro-nc-wa-preprod-884f88ddc91b1d08.elb.us-east-1.amazonaws.com:5000/api/check"
+      //   ),
+      // ]);
+    },
   },
 
   async created() {
     if (!this.token.length) {
       router.push("/login");
     }
-    this.updateData()
+    this.updateData();
   },
 
   watch: {
     cards: function () {
       setTimeout(() => {
-        this.data = this.updateData()
+        this.data = this.updateData();
       }, 10000);
-    }
-  }
+    },
+  },
 };
 </script>
 
 
 <style lang="scss" scoped>
-@import '@/Var.scss';
+@import "@/Var.scss";
 .cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   margin-inline: 10%;
-  margin-top:5%;
+  margin-top: 5%;
 
   .card {
     width: 35rem;
@@ -125,6 +139,4 @@ export default {
     box-shadow: $shadow-success;
   }
 }
-
-
 </style>
