@@ -4,5 +4,8 @@ import axios from 'axios'
 export default {
   login({ commit }, { token, responseCode, responseMessage, merchantTags, roles }) {
     commit(types.LOGIN, { token, responseCode, responseMessage, merchantTags, roles })
+  },
+  logout({ commit }) {
+    commit(types.LOGOUT)
   }
 }

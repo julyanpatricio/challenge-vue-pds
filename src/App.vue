@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <img src="https://pdssa.com.ar/wp-content/uploads/2021/03/logo_st.png">
-    <router-view/>
+    <app-header></app-header>
+    <router-view />
   </div>
 </template>
 
 <script>
+import AppHeader from './components/AppHeader'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: { AppHeader },
 }
 </script>
 

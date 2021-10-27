@@ -7,5 +7,12 @@ export default {
     state.responseMessage= responseMessage
     state.merchantTags= merchantTags
     state.roles= roles
+  },
+  [types.LOGOUT](state) {
+    state.token = ''
+    state.responseCode= ''
+    state.responseMessage= ''
+    state.merchantTags= []
+    state.roles= []
   }
 }

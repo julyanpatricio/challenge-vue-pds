@@ -119,7 +119,6 @@ export default {
         }
         dataLogin = data;
       } catch (error) {
-        console.log(error);
         dataLogin = {
           token:
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJoemJ1Y2tpQHBkc3NhLmNvbS5hciIsImp0aSI6IjMzYmU0ZWFjLWRiNzAtNDQzMC04MmY2LWFjZjk1YjJiYWVjNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNjE3NzVlZTYtZmZkYS00NjdiLWIwYzQtNjQ5NzdiNmY3MTc0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imh6YnVja2lAcGRzc2EuY29tLmFyIiwiZ2l2ZW5fbmFtZSI6Imh6YnVja2lAcGRzc2EuY29tLmFyIiwidW5pcXVlX25hbWUiOiJoemJ1Y2tpQHBkc3NhLmNvbS5hciIsImV4cCI6MTYzNTUyNjQwMiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMC8ifQ.S7rLRgSX22ny2HwRWHqhoIuZY4TbpB8-Qc0tXSWE3gQ",

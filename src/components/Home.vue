@@ -92,9 +92,10 @@ export default {
       if (!this.cards.length) {
         return (this.cards = newCards);
       }
-      
-      this.cards = this.cards.map((element) => newCards.find(card => card.version === element.version));
-      
+
+      this.cards = this.cards.map((element) =>
+        newCards.find((card) => card.version === element.version)
+      );
     },
   },
 
@@ -110,6 +111,11 @@ export default {
       setTimeout(() => {
         this.data = this.updateData();
       }, 2000);
+    },
+    token: function () {
+      if (!this.token.length) {
+        router.push("/login");
+      }
     },
   },
 };
