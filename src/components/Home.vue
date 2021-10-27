@@ -26,7 +26,7 @@ import draggable from "vuedraggable";
 
 export default {
   name: "Home",
-  
+
   components: {
     draggable,
   },
@@ -86,7 +86,7 @@ export default {
   },
 
   async created() {
-    if (this.token.length) {
+    if (!this.token.length) {
       router.push("/login");
     }
     this.updateData()
