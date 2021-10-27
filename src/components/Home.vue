@@ -110,7 +110,7 @@ export default {
     cards: function () {
       setTimeout(() => {
         this.data = this.updateData();
-      }, 2000);
+      }, 10000);
     },
     token: function () {
       if (!this.token.length) {
